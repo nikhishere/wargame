@@ -13,6 +13,8 @@ struct ContentView: View {
     @State var cpuCard = "back"
     @State var playerScore = 0
     @State var cpuScore = 0
+    @State var showVBanner = false
+    @State var showLBanner = false
 //    @State var win = "victory"
     var body: some View {
         
@@ -20,18 +22,21 @@ struct ContentView: View {
             Image(
                 "background-cloth"
             )
-            VStack {
+            VStack(alignment: .center) {
+             
+         
                 Image(
                     "logo"
                 )
                 
                 HStack {
+                    
+
                     Image(
                         playerCard
                     )
                     .padding(
-                        .leading,
-                        40
+                        .leading, 40
                     )
                     .imageScale(
                         .large
@@ -49,8 +54,9 @@ struct ContentView: View {
                         .large
                     )
                 }
+
                 Button {
-                    //                    deal()
+                                        deal()
                 } label: {
                     Image(
                         "button"
@@ -124,8 +130,52 @@ struct ContentView: View {
                     
                 }
             }
-//            Image("victory").resizable()
+            
+            
+            if showLBanner{
+                ZStack{
+                    
+                    Image ("losing" ).resizable().frame(width: 350, height: 300)
+                        .cornerRadius(40)
+                    Button {
+                       
+                        reset()
+                        
+                    } label: {
+                        Text( "Reset")
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.white)
+                            .padding(.top, 200.0)
+                    }
+                    
+                    
+                }
+                
+            }
+            
+            
+            if showVBanner {
+                
+                ZStack{
+                    Image("victory").resizable().frame(width: 350.0, height: 300.0)
+                        .cornerRadius(40)
+                    Button {
+                       
+                        reset()
+                    } label: {
+                        Text( "Reset")
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.white)
+                            .padding(.top, 200.0)
+                    }
+                    
+                }
+                
+            }
+           
+           
         }
+       
         
     }
     func deal() {
@@ -144,12 +194,30 @@ struct ContentView: View {
             cpuScore += 1
             
         }
-//        if playerScore == 10 {
-//        
-//        }
-    
+       if playerScore == 10 {
+           showVBanner = true
+        }
+        if cpuScore == 10 {
+            showLBanner = true
+        }
+//
+        
+        
+        
         
     }
+    
+    func reset () {
+        playerCard = "back"
+        cpuCard = "back"
+        playerScore = 0
+        cpuScore = 0
+        showVBanner = false
+        showLBanner = false
+        
+        
+    }
+    
 }
 
 
