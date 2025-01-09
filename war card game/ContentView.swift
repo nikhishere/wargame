@@ -15,7 +15,7 @@ struct ContentView: View {
     @State var cpuScore = 0
     @State var showVBanner = false
     @State var showLBanner = false
-//    @State var win = "victory"
+    @State var backG = false
     var body: some View {
         
         ZStack {
@@ -134,9 +134,12 @@ struct ContentView: View {
             
             if showLBanner{
                 ZStack{
+                    Image("background-cloth")
+                        
+                    Image ("losing" )
+                        .resizable().frame(width: 350.0, height: 300.0)
+                            .cornerRadius(40)
                     
-                    Image ("losing" ).resizable().frame(width: 350, height: 300)
-                        .cornerRadius(40)
                     Button {
                        
                         reset()
@@ -157,8 +160,11 @@ struct ContentView: View {
             if showVBanner {
                 
                 ZStack{
+                    Image("background-cloth")
                     Image("victory").resizable().frame(width: 350.0, height: 300.0)
+                    
                         .cornerRadius(40)
+                   
                     Button {
                        
                         reset()
@@ -179,7 +185,7 @@ struct ContentView: View {
         
     }
     func deal() {
-        
+        print("sedrpthoe")
         let point1 = Int.random(in: 2...14)
         
         playerCard = "card" + String(point1)
